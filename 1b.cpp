@@ -48,19 +48,53 @@ signed main(){
 	int lines = 1000;
 	int ans = 0;
 	int val = 0;
-	while(lines--){
+	map<string,int> nums;
+	nums["one"] = 1;
+	nums["two"] = 2;
+	nums["three"] = 3;
+	nums["four"] = 4;
+	nums["five"] = 5;
+	nums["six"] = 6;
+	nums["seven"] = 7;
+	nums["eight"] = 8;
+	nums["nine"] = 9;
+  	while(lines--){
 		string s;
 		cin >> s;
 		int first =0;
 		int second=0;
 		for(int i = 0;i<s.length();i++){
-			if(isdigit(s[i])){
+			if(nums[s.substr(i,3)] != 0){
+				first = nums[s.substr(i,3)]*10;
+				break;
+			}
+			else if(nums[s.substr(i,4)] !=0){
+				first = nums[s.substr(i,4)]*10;
+				break;			
+			}
+			else if(nums[s.substr(i,5)] !=0){
+				first = nums[s.substr(i,5)]*10;
+				break;
+			}
+			else if(isdigit(s[i])){
 				first = toint(s[i])*10;
 				break;
 			}
 		}
 		for(int i = s.length()-1;i>=0;i--){
-			if(isdigit(s[i])){
+			if(i >= 2 && nums[s.substr(i-2,3)] != 0){
+				second = nums[s.substr(i-2,3)];
+				break;
+			}
+			else if(i >= 3 && nums[s.substr(i-3,4)] != 0){
+				second = nums[s.substr(i-3,4)];
+				break;
+			}
+			else if(i >= 4 && nums[s.substr(i-4,5)] != 0){
+				second = nums[s.substr(i-4,5)];
+				break;
+			}
+			else if(isdigit(s[i])){
 				second = toint(s[i]);
 				break;
 			}
